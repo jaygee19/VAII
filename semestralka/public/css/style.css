@@ -1,0 +1,298 @@
+
+
+body {
+    background-color: rgb(54, 54, 56) !important;
+}
+
+@media (max-width: 768px) {
+    .jumbotron-fluid {
+        background-color: black !important;
+        text-align: center;
+    }
+
+    .djimage {
+        width: auto;
+        height: 225px;
+    }
+
+    #trance {
+        background-image: url("images/ArminB.png") ;
+    }
+
+    #progress {
+        background-image: url("images/ThirdPartyB.png") ;
+    }
+
+    #dnb {
+        background-image: url("images/DimoB.png") ;
+    }
+
+    #bigroom {
+        background-image: url("images/GarrixB.png") ;
+    }
+
+    #hardstyle {
+        background-image: url("images/TimmyB.png") ;
+    }
+
+    #psy {
+        background-image: url("images/ViniViciB.png") ;
+    }
+
+    .undertitle {
+        padding: 15px;
+        font-size: xx-large;
+    }
+
+    .undertext {
+        font-size: medium;
+    }
+
+    th, td {
+        padding: 0px;
+        background-color: black;
+        color: white;
+    }
+
+
+}
+@media (min-width: 768px) {
+    .jumbotron-fluid {
+        background-color: black !important;
+        background: url("images/Snímka\ obrazovky\ 2020-10-25\ 115043.jpg") bottom no-repeat;
+        text-align: right;
+    }
+
+    .djimage {
+        width: auto;
+        height: 225px;
+    }
+
+    .pozadie {
+        background-color: #3e3b3b;
+    }
+
+    .wall {
+        background-color: #3e3b3b;
+    }
+
+    #trance {
+        background-image: url("images/Armin.png") ;
+    }
+
+    #progress {
+        background-image: url("images/ThirdParty.png") ;
+    }
+
+    #dnb {
+        background-image: url("images/Dimo.png") ;
+    }
+
+    #bigroom {
+        background-image: url("images/Garrix.png") ;
+    }
+
+    #hardstyle {
+        background-image: url("images/Timmy.png") ;
+    }
+
+    #psy {
+        background-image: url("images/ViniVici.png") ;
+    }
+
+    .undertitle {
+        padding: 30px;
+        font-size: xx-large;
+    }
+
+    th, td {
+        padding: 10px;
+        background-color: black;
+        color: white;
+    }
+
+}
+
+.navbar
+{
+    background-color: #3e3b3b;
+}
+
+h1 {
+    color: #ff7b1f;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+    color: #ff7b1f !important;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: white !important;
+}
+
+.card-body {
+    background-color: #ff7b1f;
+    padding: 0.5rem;
+}
+
+.btn-group .btn {
+    background-color: #3e3b3b !important;
+    color: white;
+}
+
+.btn.btn-link {
+    color: #ff7b1f !important;
+    background-color: #000 !important;
+    border-color: #000 !important;
+}
+
+.btn-group .btn:hover {
+    color: #ff7b1f;
+}
+
+.djimage-title {
+    position: absolute;
+    text-align: center;
+    padding: 5px;
+    color: white;
+}
+
+.djimage-title:hover {
+    color: #ff7b1f;
+}
+
+.form-group label {
+    color: white;
+}
+
+.btn {
+    border-color: #4e4c4c;
+    background-color: #ff7b1f !important;
+}
+
+.btn-primary {
+    color: #ff7b1f !important;
+    background-color: #000 !important;
+    border-color: #000 !important;
+  }
+
+.dropdown-menu .dropdown-item {
+    background-color: #3e3b3b !important;
+    color: white;
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background-color: #3e3b3b !important;
+    color: #ff7b1f;
+}
+
+.dropdown-menu.show {
+    display: contents !important;
+}
+
+.navbar-brand {
+    color: white !important;
+}
+
+#jumbotron {
+    background-color: black;
+    text-align: center;
+    height: 200px;
+}
+
+#jumbotron .display-4 {
+    padding: 20px;
+}
+
+.carousel-inner {
+    height: 500px;
+    padding: 50px;
+}
+
+.jumbotron .display-4 {
+    font-weight: 400;
+}
+
+#toptrance tr {
+    border: 1px solid white;
+}
+
+td:hover {
+    background-color: #ff7b1f;
+}
+
+.media h5 {
+    color: #ff7b1f;
+}
+
+.media-body {
+    color: white;
+
+}
+
+.media {
+    border: 8px solid #4e4c4c;
+    background-color: #3e3b3b !important;
+    padding: 20px;
+    margin: 20px;
+}
+
+.space {
+    padding: 4px;
+}
+
+.mybutton a {
+    color: #ff7b1f !important;
+}
+
+@media (max-width: 768px) {
+    audio {
+        width: 150px !important;
+    }
+}
+
+h3, h4 {
+    color: #ff7b1f;
+}
+
+.list-group-item:last-child {
+    background-color: #ff7b1f;
+}
+
+.list-group-item {
+    border: 2px solid #4e4c4c !important;
+    background-color: #ff7b1f !important;
+}
+
+a {
+    color: white !important;
+}
+
+.numVotes {
+    text-align: end !important;
+}
+
+.votes {
+    text-align: end !important;
+    position: absolute;
+    right: 10px;
+}
+
+.input-group-text {
+    padding: 0px !important;
+    background-color: #ff7b1f !important;
+    border: 0px !important;
+}
+
+.submitbut {
+    background-color: #4e4c4c !important;
+}
+
+.lead {
+    color: #ff7b1f;
+}
+
+.footer {
+    background-color: rgb(66, 66, 68) !important;
+    text-align: center !important;
+}

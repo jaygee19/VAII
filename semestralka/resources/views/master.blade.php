@@ -32,9 +32,12 @@
                     <a class="nav-link" href="{{ url('/homepage') }}">Home <span class="sr-only">(current)</span></a>
                 </li>
 
+                @if (Auth::user() != null && Auth::user()->admin == 1)  
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('track.create') }}">Add Song</a>
-                </li>
+                    {{-- <a class="nav-link" href="{{ route('track.create') }}">Add Song</a> --}}
+                    <a class="nav-link" href="{{ route('track.index') }}">{{ __('Tracks') }}</a>
+                </li> 
+                @endif
 
                 <li class="nav-item">
                     @auth
@@ -42,9 +45,9 @@
                     @endauth
                 </li>
 
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link" href="{{ route('track.index') }}">{{ __('Tracks') }}</a>
-                </li>
+                </li> --}}
 
                {{--  <li class="nav-item">
                     <a class="nav-link" href="?c=Vote&a=results">Top 10 Chart </a>

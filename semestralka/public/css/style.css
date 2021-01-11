@@ -296,3 +296,9 @@ a {
     background-color: rgb(66, 66, 68) !important;
     text-align: center !important;
 }
+
+.btn-success {
+    color: #fff;
+    background-color: #3e3b3b !important;
+    border-color: #fff !important;
+  }

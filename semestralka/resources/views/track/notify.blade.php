@@ -15,9 +15,12 @@
     <a href="{{ route('track.create') }}" class="btn btn-sm btn-success" role="button">Add new</a>
 </div>
 
+
+
 <p>&nbsp;</p> 
 
 <div class="container">
+    <p>Usepesne zmenene</p>
     <h3> All Songs:  <p class="numVotes"> Number of votes: </p> </h3>
         <?php $counter = 0; ?>
         <ul class="list-group">
@@ -41,3 +44,4 @@
 
 
 
+       

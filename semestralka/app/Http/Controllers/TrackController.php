@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Track;
+use Illuminate\Support\Facades\DB;
 
 class TrackController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      *
@@ -15,9 +17,20 @@ class TrackController extends Controller
     public function index()
     {
         //$tracks = DB::select('select * from tracks', [1]);
-        //$tracks = DB::select('select * from tracks where id = :id', ['id' => 1]);
+        //$tracks = DB::select('select * from tracks where artist = :artist', ['artist' => 'Bran']);
         $tracks = Track::all();
         return view('track.allTracks', ['tracks' => $tracks]);
+
+        // if ($param == '1')
+        // {
+        //     $param = '1';
+        //     return view('track.allTracks', ['tracks' => $tracks, 'param' => $param]);
+        // }
+        // else {
+        //     $param = '0';
+        //     return view('track.allTracks', ['tracks' => $tracks, 'param' => $param]);
+        // }
+        
     }
 
     /**
@@ -41,18 +54,24 @@ class TrackController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'artist' => 'required',
+            'name' => 'required|min:6',
+            'genre' => 'required'
+        ]);
+
         $track = Track::create($request->all());
         $track->save();
-        return redirect()->route('track.index');
+        return redirect()->route('track.notify');    
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  string $genre
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($genre)
     {
         // $tr = new Track();  
         // $tr->artist = 'Aahd';
@@ -60,8 +79,10 @@ class TrackController extends Controller
         // $tr = Track::find(PK);   update
         //DB::insert('insert into users (id, name) values (?, ?)', [1, 'Dayle'])
         //$tr = DB::update('update users set votes = 100 where name = ?', ['John']);
-
         // Track::delete(PK);
+
+        $tracks = DB::select('select * from tracks where genre = :genre order by votes desc', ['genre' => $genre]);
+        return view('results.reslayout', ['tracks' => $tracks, 'genre' => $genre]);
     }
 
     /**
@@ -70,9 +91,13 @@ class TrackController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Track $track)
     {
-        //
+        return view('track.edit', [
+            'action' => route('track.update', $track->id),
+            'method' => 'put',
+            'model' => $track
+        ]);
     }
 
     /**
@@ -82,9 +107,16 @@ class TrackController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Track $track)
     {
-        //
+        $request->validate([
+            'artist' => 'required',
+            'name' => 'required|min:6',
+            'genre' => 'required'
+        ]);
+
+        $track->update($request->all());
+        return redirect()->route('track.notify');    
     }
 
     /**
@@ -93,8 +125,14 @@ class TrackController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Track $track)
     {
-        //
+        $track->delete();
+        return redirect()->route('track.notify');    
+    }
+
+    public function notify(){
+        $tracks = Track::all();
+        return view('track.notify', ['tracks' => $tracks] );
     }
 }

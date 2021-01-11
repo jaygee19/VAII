@@ -20,8 +20,8 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">        
-                                <a class="vote" href="add">Vote</a> &nbsp;
-                                <a class="top" href="add">Top 10</a>
+                                <button type="button" class="btn btn-sm btn-success">Vote</button> 
+                                <a href="{{ route('track.show', 'Trance') }}" class="btn btn-sm btn-success" role="button">Top 10</a>
                             </div>
                         </div>
                     </div>
@@ -38,8 +38,8 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Vote</button> 
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Top 10</button>
+                                <button type="button" class="btn btn-sm btn-success">Vote</button> 
+                                <a href="{{ route('track.show', 'Progressive') }}" class="btn btn-sm btn-success" role="button">Top 10</a>
                             </div>
                         </div>
                     </div>
@@ -55,8 +55,8 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Vote</button>
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Top 10</button>
+                                <button type="button" class="btn btn-sm btn-success">Vote</button>
+                                <a href="{{ route('track.show', 'DnB') }}" class="btn btn-sm btn-success" role="button">Top 10</a>
                             </div>
                         </div>
                     </div>

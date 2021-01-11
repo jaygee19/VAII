@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTracksTable extends Migration
+class UpdateGenreToTracksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,11 @@ class CreateTracksTable extends Migration
      */
     public function up()
     {
-        Schema::create('tracks', function (Blueprint $table) {
-            $table->id();
-            $table->string('artist');
-            $table->string('name');
-            $table->string('genre');
-            $table->integer('votes');
+        Schema::table('tracks', function (Blueprint $table) {
+               $table->dropColumn('genre');
+               $table->set('genre', ['Trance', 'BigRoom', 'Progressive', 'PsyTrance', 'Hardstyle', 'DnB']);
         });
     }
-
 
     /**
      * Reverse the migrations.
@@ -30,6 +26,8 @@ class CreateTracksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tracks');
+        Schema::table('tracks', function (Blueprint $table) {
+            
+        });
     }
 }

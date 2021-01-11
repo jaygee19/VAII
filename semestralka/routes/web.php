@@ -19,8 +19,11 @@ use App\Http\Controllers\UserController;
 
 Route::get('/', [PagesController::class, 'index']);
 Route::get('homepage', [PagesController::class, 'index']);
+Route::get('track/notify', [TrackController::class, 'notify'])->name('track.notify');
+
 
 Route::resource('track', TrackController::class);
+Route::get('track/{track}/delete', [TrackController::class, 'destroy'])->name('track.delete');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('user', UserController::class);

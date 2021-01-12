@@ -21,7 +21,9 @@
 
 <div class="container">
     <p>Usepesne zmenene</p>
-    <h3> All Songs:  <p class="numVotes"> Number of votes: </p> </h3>
+    <h3> All Songs:  
+        {{-- <p class="numVotes"> Number of votes: </p>  --}}
+    </h3>
         <?php $counter = 0; ?>
         <ul class="list-group">
             @foreach ($tracks as $track)
@@ -32,7 +34,7 @@
             <a href="{{ route('track.edit', $track->id) }}" class="btn btn-sm btn-success" role="button">Edit</a>
             <a href="{{ route('track.delete', $track->id) }}" class="btn btn-sm btn-success" role="button" data-confirm="Are You Sure?" data-method="DELETE">Delete</a>
                 
-            <span class="votes"> <b> {{ $track->votes }} </b> </span>
+            {{-- <span class="votes"> <b> {{ $track->users_count }} </b> </span> --}}
             </li>
              @endforeach
         </ul>

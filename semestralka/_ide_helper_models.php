@@ -18,7 +18,8 @@ namespace App\Models{
  * @property string $artist
  * @property string $name
  * @property string $genre
- * @property int $votes
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $users
+ * @property-read int|null $users_count
  * @method static \Illuminate\Database\Eloquent\Builder|Track newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Track newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Track query()
@@ -26,7 +27,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Track whereGenre($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Track whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Track whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Track whereVotes($value)
  */
 	class Track extends \Eloquent {}
 }
@@ -46,6 +46,8 @@ namespace App\Models{
  * @property int $admin
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Track[] $tracks
+ * @property-read int|null $tracks_count
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User query()

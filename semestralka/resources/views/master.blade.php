@@ -34,7 +34,6 @@
 
                 @if (Auth::user() != null && Auth::user()->admin == 1)  
                 <li class="nav-item">
-                    {{-- <a class="nav-link" href="{{ route('track.create') }}">Add Song</a> --}}
                     <a class="nav-link" href="{{ route('track.index') }}">{{ __('Tracks') }}</a>
                 </li> 
                 @endif
@@ -44,37 +43,17 @@
                     <a class="nav-link" href="{{ route('user.index') }}">{{ __('Users') }}</a>
                     @endauth
                 </li>
-
-                {{-- <li class="nav-item">
-                    <a class="nav-link" href="{{ route('track.index') }}">{{ __('Tracks') }}</a>
-                </li> --}}
-
-               {{--  <li class="nav-item">
-                    <a class="nav-link" href="?c=Vote&a=results">Top 10 Chart </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="?c=Vote">Vote</a>
-                </li>
-                
-                <li class="nav-item">
-                    <a class="nav-link" href="?c=Vote&a=edidel"> Edit / Delete </a>
-                </li> --}}
-                {{-- <li class="nav-item">
-                    <a class="nav-link" href="loginUser">Login</a>
-                </li> --}}
-
-                @if (Route::has('login'))                    
+            </ul>
+               
+                <ul class = "navbar-nav ml-auto">
+                @if (Route::has('login'))      
                     @auth
                      <li class="nav-item">
                         <a href="{{ url('/home') }}" class="nav-link">Account</a>
                     </li> 
                     
                     <li class="nav-item">
-                    <a class="nav-link" href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();">
-                    {{ __('Logout') }}
-                    </a>
+                    <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
                     </li>
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -85,16 +64,16 @@
                     <li class="nav-item">
                         <a href="{{ route('login') }}" class="nav-link">Login</a>  
                     </li>
+
                     <li class="nav-item">
-                        @if (Route::has('register'))
+                    @if (Route::has('register'))
                             <a href="{{ route('register') }}" class="nav-link">Register</a>
-                        @endif
+                    @endif
                     </li>    
                     @endauth
-                @endif
-                    
-                    
-                    
+                    @endif
+                </ul>                    
+                       
                 <!--<li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Results
@@ -104,7 +83,7 @@
                         <a class="dropdown-item" href="music.html">Yearly</a>
                     </div>
                 </li>-->
-            </ul>
+            
         </div>
     </div>
 </nav>

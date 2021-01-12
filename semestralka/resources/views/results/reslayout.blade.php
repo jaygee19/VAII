@@ -18,7 +18,7 @@
             if ($counter < 11) {
             ?>
             <li class="list-group-item"> {{ $counter }} . {{ $track->artist }} {{ " - " }} {{ $track->name }} {{ "("  }} {{ $track->genre }} {{ ")" }} &nbsp; 
-            <span class="votes"> <b> {{ $track->votes }} </b> </span>
+            <span class="votes"> <b> {{ $track->users_count }} </b> </span>
             </li>
              <?php } ?> 
              @endforeach

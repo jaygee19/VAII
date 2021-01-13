@@ -2,6 +2,7 @@
 
 body {
     background-color: rgb(54, 54, 56) !important;
+    font-variant: petite-caps !important;
 }
 
 @media (max-width: 768px) {
@@ -113,9 +114,13 @@ body {
 
 }
 
-.navbar
+.navbar 
 {
-    background-color: #3e3b3b;
+    background-color: #3e3b3b !important;
+}
+
+.nav-link:hover {
+    color: #ff7b1f !important;
 }
 
 h1 {
@@ -302,3 +307,7 @@ a {
     background-color: #3e3b3b !important;
     border-color: #fff !important;
   }
+
+.btn-outline-secondary {
+    background-color: #3e3b3b !important;
+}

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\TrackController;
 use App\Http\Controllers\UserController;
-
+use App\Http\Controllers\VoteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,9 +21,14 @@ Route::get('/', [PagesController::class, 'index']);
 Route::get('homepage', [PagesController::class, 'index']);
 Route::get('track/notify', [TrackController::class, 'notify'])->name('track.notify');
 
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('vote', VoteController::class);
+    Route::get('vote/{track}/delete', [VoteController::class, 'destroy'])->name('vote.delete');
+});
 
 Route::resource('track', TrackController::class);
 Route::get('track/{track}/delete', [TrackController::class, 'destroy'])->name('track.delete');
+
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('user', UserController::class);

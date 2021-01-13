@@ -12,7 +12,7 @@
 
 @section('content')
 <div class="container">
-    <a href="{{ route('track.create') }}" class="btn btn-sm btn-success" role="button">Add new</a>
+    <a href="{{ route('track.create') }}" class="btn btn-sm btn-outline-secondary" role="button">Add new</a>
 </div>
 
 
@@ -20,24 +20,37 @@
 <p>&nbsp;</p> 
 
 <div class="container">
-    <p>Usepesne zmenene</p>
-    <h3> All Songs:  
-        {{-- <p class="numVotes"> Number of votes: </p>  --}}
-    </h3>
+
+        <div class="card text-center">
+            <div class="card-header">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Something has been changed by {!! Auth::user()->name !!}</h5>
+              <p>Action successful !</p>
+            </div>
+          </div>
+    <p></p>
+    
+    <h3> All Songs: </h3>
+    <div class="row">
         <?php $counter = 0; ?>
         <ul class="list-group">
             @foreach ($tracks as $track)
-            <?php $counter++; 
-            ?>
-            <li class="list-group-item"> {{ $counter }} . {{ $track->artist }} {{ " - " }} {{ $track->name }} {{ "("  }} {{ $track->genre }} {{ ")" }} &nbsp;
+            <div class="col">
+                <li class="list-group-item"> {{ $track->artist }} {{ " - " }} {{ $track->name }} {{ "("  }} {{ $track->genre }} {{ ")" }} &nbsp;
            
-            <a href="{{ route('track.edit', $track->id) }}" class="btn btn-sm btn-success" role="button">Edit</a>
-            <a href="{{ route('track.delete', $track->id) }}" class="btn btn-sm btn-success" role="button" data-confirm="Are You Sure?" data-method="DELETE">Delete</a>
-                
-            {{-- <span class="votes"> <b> {{ $track->users_count }} </b> </span> --}}
-            </li>
+                    <a href="{{ route('track.edit', $track->id) }}" class="btn btn-sm btn-outline-secondary" role="button">Edit</a>
+                    <a href="{{ route('track.delete', $track->id) }}" class="btn btn-sm btn-outline-secondary" role="button" data-confirm="Are You Sure?" data-method="DELETE">Delete</a>
+                        
+                    </li>
+            </div>
+           
              @endforeach
         </ul>
+    </div>
+    <p></p>
+    <p></p>
+    <div >{{ $tracks->links() }}</div>
 </div>
  
     

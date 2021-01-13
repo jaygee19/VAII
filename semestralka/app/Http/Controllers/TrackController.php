@@ -21,9 +21,10 @@ class TrackController extends Controller
         //$tracks = DB::select('select * from tracks where artist = :artist', ['artist' => 'Bran']);
         if (Auth::user() != null && Auth::user()->admin == 1)  
         {
-            $tracks = Track::withCount('users')->get();
+           // $tracks = Track::withCount('users')->get();
             //$tracks = Track::all();
             //dd($tracks->toArray());
+            $tracks = DB::table('tracks')->paginate(15);
             return view('track.allTracks', ['tracks' => $tracks]);
         }
         else 
@@ -65,7 +66,7 @@ class TrackController extends Controller
 
         $request->validate([
             'artist' => 'required',
-            'name' => 'required|min:6',
+            'name' => 'required|min:3',
             'genre' => 'required'
         ]);
 
@@ -136,7 +137,7 @@ class TrackController extends Controller
         {
         $request->validate([
             'artist' => 'required',
-            'name' => 'required|min:6',
+            'name' => 'required|min:3',
             'genre' => 'required'
         ]);
 
@@ -171,7 +172,7 @@ class TrackController extends Controller
     public function notify(){
         if (Auth::user() != null && Auth::user()->admin == 1)  
         {
-        $tracks = Track::all();
+        $tracks = DB::table('tracks')->paginate(15);
         return view('track.notify', ['tracks' => $tracks] );
         }
         else 

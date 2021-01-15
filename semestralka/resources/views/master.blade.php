@@ -31,6 +31,10 @@
                 <a class="nav-link" href="{{ url('/homepage') }}">Home <span class="sr-only">(current)</span></a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('album.index') }}">Albums</a>
+            </li> 
+
             @if (Auth::user() != null && Auth::user()->admin == 1)  
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('track.index') }}">{{ __('Tracks') }}</a>

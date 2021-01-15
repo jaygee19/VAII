@@ -19,6 +19,7 @@ class Track extends Model
         'artist',
         'name',
         'genre',
+        'album_id'
     ];
     
     public $timestamps = false;
@@ -26,5 +27,10 @@ class Track extends Model
     public function users()
     {
         return $this->belongsToMany(User::class); 
+    }
+
+    public function album()
+    {
+        return $this->belongsTo(Album::class);
     }
 }

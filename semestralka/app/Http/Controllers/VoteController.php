@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Track;
+use Illuminate\Support\Facades\DB;
 
 
 class VoteController extends Controller
@@ -71,12 +72,7 @@ class VoteController extends Controller
         $request->user()->tracks()->attach($id);
         $tracks = Track::withCount('users')->orderBy('users_count', 'desc')->where('genre','=', $genre)->get();
 
-        return view('results.reslayout', ['tracks' => $tracks, 'genre' => $genre]);  
-
-
-        // $track = Track::create($request->all());
-        // $track->save();
-        // return redirect()->route('track.notify');   
+        return view('results.reslayout', ['tracks' => $tracks, 'genre' => $genre]);   
     }
 
     /**
@@ -87,7 +83,8 @@ class VoteController extends Controller
      */
     public function show($genre)
     {
-        $tracks = Track::withCount('users')->get();
+        //$tracks = Track::withCount('users')->get();
+        $tracks = DB::table('tracks')->paginate(10);
         return view('results.voting', [
             'action' => route('vote.store'),
             'method' => 'post',

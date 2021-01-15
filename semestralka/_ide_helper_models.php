@@ -12,17 +12,45 @@
 
 namespace App\Models{
 /**
+ * App\Models\Album
+ *
+ * @property int $id
+ * @property string $artist
+ * @property string $name
+ * @property int $numberOfSongs
+ * @property string|null $description
+ * @property string|null $image
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Track[] $tracks
+ * @property-read int|null $tracks_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Album newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Album newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Album query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Album whereArtist($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Album whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Album whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Album whereImage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Album whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Album whereNumberOfSongs($value)
+ */
+	class Album extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Track
  *
  * @property int $id
  * @property string $artist
  * @property string $name
  * @property string $genre
+ * @property int|null $album_id
+ * @property-read \App\Models\Album|null $album
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $users
  * @property-read int|null $users_count
  * @method static \Illuminate\Database\Eloquent\Builder|Track newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Track newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Track query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Track whereAlbumId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Track whereArtist($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Track whereGenre($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Track whereId($value)

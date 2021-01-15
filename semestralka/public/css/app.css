@@ -4947,6 +4947,8 @@ input[type=button].btn-block {
   background-color: #4e4c4c !important;
   border: 5px solid !important;
   border-radius: 0.25rem;
+  padding: 0 !important;
+  margin: 10px 0px !important;
 }
 
 .card > hr {

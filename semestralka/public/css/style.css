@@ -5,10 +5,25 @@ body {
     font-variant: petite-caps !important;
 }
 
+@media (max-width: 576px) {
+
+    .card-img-alb {
+        width: 443px !important;
+        height: 250px !important;
+    }
+
+}
+
 @media (max-width: 768px) {
+
     .jumbotron-fluid {
         background-color: black !important;
         text-align: center;
+    }
+
+    .card-img-alb {
+        width: 500px !important;
+        height: 250px !important;
     }
 
     .djimage {
@@ -67,6 +82,11 @@ body {
     .djimage {
         width: auto;
         height: 225px;
+    }
+
+    .card-img-alb {
+        width: auto !important;
+        height: 250px !important;
     }
 
     .pozadie {

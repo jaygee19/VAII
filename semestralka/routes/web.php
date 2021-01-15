@@ -5,6 +5,7 @@ use App\Http\Controllers\PagesController;
 use App\Http\Controllers\TrackController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VoteController;
+use App\Http\Controllers\AlbumController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,8 @@ use App\Http\Controllers\VoteController;
 Route::get('/', [PagesController::class, 'index']);
 Route::get('homepage', [PagesController::class, 'index']);
 Route::get('track/notify', [TrackController::class, 'notify'])->name('track.notify');
+
+Route::resource('album', AlbumController::class);
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('vote', VoteController::class);

@@ -17,12 +17,13 @@
             @foreach ($tracks as $track)
             <div class="col">
                 @if($track->genre == $genre)
-                <form method="post" action="{{ $action}}">
+                <form method="post" action="{{ $action}}">  
                 @csrf
-                @method($method)
-                <input type="hidden" id="id" name="id" value= {{ $track->id }}> 
+                @method($method) {{-- zbytocnost --}}
+                <input type="hidden" id="id" name="id" value= {{ $track->id }}> {{-- zbytocnost --}}
                 <li class="list-group-item rounded"> {{ $track->artist }} {{ " - " }} {{ $track->name }} {{ "("  }} {{ $track->genre }} {{ ")" }} 
-                <input type="submit" value="Vote" >
+                <input type="submit" value="Vote" > {{-- zbytocnost --}}
+                {{-- <div class="track btn btn-success" id={{ $track->id }} ></div>  --}}
                 </li>
                 </form>
             </div>
@@ -31,5 +32,9 @@
         </ul>
     </div>
 </div>
+
+<p></p>
+<p></p>
+<div class="container">{{ $tracks->links() }}</div>
 
 @endsection

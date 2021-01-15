@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Track;
+use App\Models\Album;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,8 +22,8 @@ class TrackController extends Controller
         //$tracks = DB::select('select * from tracks where artist = :artist', ['artist' => 'Bran']);
         if (Auth::user() != null && Auth::user()->admin == 1)  
         {
-           // $tracks = Track::withCount('users')->get();
-            //$tracks = Track::all();
+            //$tracks = Track::with('album')->get();
+            //$tracks = Album::all();
             //dd($tracks->toArray());
             $tracks = DB::table('tracks')->paginate(15);
             return view('track.allTracks', ['tracks' => $tracks]);
@@ -66,7 +67,7 @@ class TrackController extends Controller
 
         $request->validate([
             'artist' => 'required',
-            'name' => 'required|min:3',
+            'name' => 'required|min:3|max:30',
             'genre' => 'required'
         ]);
 

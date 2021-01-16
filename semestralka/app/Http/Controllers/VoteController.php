@@ -73,6 +73,7 @@ class VoteController extends Controller
         $tracks = Track::withCount('users')->orderBy('users_count', 'desc')->where('genre','=', $genre)->get();
 
         return view('results.reslayout', ['tracks' => $tracks, 'genre' => $genre]);   
+        
     }
 
     /**
@@ -84,7 +85,7 @@ class VoteController extends Controller
     public function show($genre)
     {
         //$tracks = Track::withCount('users')->get();
-        $tracks = DB::table('tracks')->paginate(10);
+        $tracks = DB::table('tracks')->where('genre', $genre)->paginate(10);
         return view('results.voting', [
             'action' => route('vote.store'),
             'method' => 'post',
@@ -92,6 +93,28 @@ class VoteController extends Controller
             'genre' => $genre,
             'notify' => '0'
         ]);
+    }
+
+    public function filter(Request $request)
+    {
+        $genre = $request->genre;
+        if ($request->artist != null)
+        {
+            $tracks = Track::where('genre', $genre)->where('artist', 'like' , $request->artist.'%')->paginate(10);
+        } 
+        if ($request->name != null)
+        {
+            $tracks = Track::where('genre', $genre)->where('artist', 'like' , $request->artist.'%')->where('name', 'like', $request->name.'%')->paginate(10);
+        } else 
+        {
+            $tracks = DB::table('tracks')->where('genre', $genre)->paginate(10);
+        }
+        return view('results.voting', [
+            'action' => route('vote.store'),
+            'method' => 'post',
+            'tracks' => $tracks,
+            'genre' => $genre,
+            'notify' => '0' ]); 
     }
 
     /**
@@ -129,7 +152,7 @@ class VoteController extends Controller
         if ($request->user()->tracks()->where('tracks.id', $id)->exists()) {
             $request->user()->tracks()->detach($id);
             $tracks = $request->user()->tracks;
-            return view('home', ['tracks' => $tracks]);
+            return response()->json($tracks);
     
         } else 
         {

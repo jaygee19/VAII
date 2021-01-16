@@ -21,6 +21,7 @@ use App\Http\Controllers\AlbumController;
 Route::get('/', [PagesController::class, 'index']);
 Route::get('homepage', [PagesController::class, 'index']);
 Route::get('track/notify', [TrackController::class, 'notify'])->name('track.notify');
+Route::get('vote/filter', [VoteController::class, 'filter'])->name('vote.filter');
 
 Route::resource('album', AlbumController::class);
 

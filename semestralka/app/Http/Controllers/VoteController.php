@@ -26,8 +26,6 @@ class VoteController extends Controller
      */
     public function create()
     {
-        // $tracks = Track::withCount('users')->get();
-        // return view('results.voting', ['tracks' => $tracks,]);
         $tracks = Track::withCount('users')->get();
         return view('results.voting', [
             'action' => route('vote.store'),
@@ -45,28 +43,19 @@ class VoteController extends Controller
     public function store(Request $request)
     {
         $id = $request->input('id');
-        //dd($request->input('id'));
         $track =  Track::findOrFail($id);
         $genre = $track->genre;
 
-        //existuje song
-
-        //
-        //if ($request->user()->tracks()->
         if ($request->user()->tracks()->where('tracks.id', $id)->exists()) {
-            // $tracks = Track::withCount('users')->get();
             return view('pages.error', [
                 'notify' => '1'
             ]);
-            // abort(400,"Bad request");
         }
 
-        if ($request->user()->tracks()->count() >= 3) {
-            // $tracks = Track::withCount('users')->get();
+        if ($request->user()->tracks()->where('genre', $genre)->count() >= 3) {
             return view('pages.error', [
                 'notify' => '2'
             ]);
-            //abort(400,"Bad requestik");
         }
 
         $request->user()->tracks()->attach($id);
@@ -84,7 +73,6 @@ class VoteController extends Controller
      */
     public function show($genre)
     {
-        //$tracks = Track::withCount('users')->get();
         $tracks = DB::table('tracks')->where('genre', $genre)->get();
         return view('results.voting', [
             'action' => route('vote.store'),
@@ -109,15 +97,13 @@ class VoteController extends Controller
         if ($request->name == null && $request->artist == null)
         {
             $tracks = DB::table('tracks')->where('genre', $genre)->get();
-        }
+        } 
         return view('results.voting', [
             'action' => route('vote.store'),
             'method' => 'post',
             'tracks' => $tracks,
             'genre' => $genre,
             'notify' => '0' ]);
-        //return response()->json($tracks);
-
     }
 
     /**

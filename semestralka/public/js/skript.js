@@ -11,7 +11,7 @@ function unvote(id){
                     tracksHTML = "";
                     response.forEach(track => {
                         tracksHTML += ' <div class="col-md-10"> <ul> <li class="list-group-item rounded"> '  + track.artist +  " - "  +  track.name +  " ( " + track.genre +  " ) &nbsp " ;
-                        tracksHTML += ' <button class="btn btn-sm btn-outline-secondary" onClick="unvote(' + track.id + ') ">Unvote</button> <button class="btn btn-sm btn-outline-secondary" onClick="posi(' + track.id + ')">Position</button></li> </ul></div>';
+                        tracksHTML += ' <button class="btn btn-sm btn-outline-secondary" onClick="unvote(' + track.id + ') ">Unvote</button> <div> <button class="btn btn-sm btn-outline-secondary" onClick="posi(' + track.id + ')">Position</button> </div></li> </ul></div>';
                     });
                     document.getElementById('userVotes').innerHTML=tracksHTML;  
                 }
@@ -32,10 +32,10 @@ function posi(id){
                     response.tracks.forEach(track => {
                         if (response.id == track.id) {                        
                         tracksHTML += ' <div class="col-md-10"> <ul> <li class="list-group-item rounded"> '  + track.artist +  " - "  +  track.name +  " ( " + track.genre +  " ) &nbsp " ;
-                        tracksHTML += ' <button class="btn btn-sm btn-outline-secondary" onClick="unvote(' + track.id + ') ">Unvote</button> <button class="btn btn-sm btn-outline-secondary" onClick="posi(' + track.id + ')">Position</button>  => Position in result standings( <b> '+ response.position +'. </b> ) with ( <i> '+ track.users_count +' </i> ) votes</li></ul> </div>';
+                        tracksHTML += ' <button class="btn btn-sm btn-outline-secondary" onClick="unvote(' + track.id + ') ">Unvote</button> <div><button class="btn btn-sm btn-outline-secondary" onClick="posi(' + track.id + ')">Position</button>  => Position in <i> ' + track.genre +  ' </i> standings( <b> '+ response.position +'. </b> ) with ( <i> '+ track.users_count +' </i> ) votes </div></li></ul></div>';
                         } else {
                         tracksHTML += ' <div class="col-md-10"> <ul> <li class="list-group-item rounded"> '  + track.artist +  " - "  +  track.name +  " ( " + track.genre +  " ) &nbsp " ;
-                        tracksHTML += ' <button class="btn btn-sm btn-outline-secondary" onClick="unvote(' + track.id + ') ">Unvote</button> <button class="btn btn-sm btn-outline-secondary" onClick="posi(' + track.id + ')">Position</button></li></ul> </div>';
+                        tracksHTML += ' <button class="btn btn-sm btn-outline-secondary" onClick="unvote(' + track.id + ') ">Unvote</button> <div><button class="btn btn-sm btn-outline-secondary" onClick="posi(' + track.id + ')">Position</button></div></li></ul></div>';
                         }
                     });
                     document.getElementById('userVotes').innerHTML=tracksHTML;  

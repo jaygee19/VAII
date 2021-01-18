@@ -9,10 +9,13 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-start">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header"> <b>Hi {{ Auth::user()->name }} ! {{ __('You are logged in!') }}</b> </div>
+                <div class="card-header"> <b>Hi {{ Auth::user()->name }} ! {{ __('You are logged in!') }}</b> 
+                    <p></p>
+                    <p>Here are song you've been voting for:</p>
+                </div>
             </div>
         </div>
     </div>
@@ -21,13 +24,15 @@
 <p></p>
 
 <div class="container" >
-    <div class="row justify-content-center" id="userVotes">
+    <div class="row justify-content-end" id="userVotes">
         @foreach ($tracks as $track)
         <div class="col-md-10">
             <ul>
                 <li class="list-group-item rounded"> {{ $track->artist }} {{ " - " }} {{ $track->name }} {{ "("  }} {{ $track->genre }} {{ ")" }} &nbsp;
                     <button class="btn btn-sm btn-outline-secondary" onClick="unvote({{ $track->id }})">Unvote</button>
-                    <button class="btn btn-sm btn-outline-secondary" onClick="posi({{ $track->id }})">Position</button>
+                    <div>
+                        <button class="btn btn-sm btn-outline-secondary" onClick="posi({{ $track->id }})">Position</button>
+                    </div>
                 </li>  
             </ul>   
         </div>

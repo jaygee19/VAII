@@ -31,7 +31,8 @@ class HomeController extends Controller
 
     public function getPosition(Request $request, $id)
     {
-        $all = Track::withCount('users')->orderBy('users_count', 'desc')->get();
+        $genre = Track::find($id)->genre;
+        $all = Track::withCount('users')->where('genre', $genre)->orderBy('users_count', 'desc')->get();
         $counter = 0;
         foreach ($all as $track)
         {

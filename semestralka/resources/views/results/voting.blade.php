@@ -29,17 +29,17 @@
     <ul class="list-group">
     @foreach ($tracks as $track)
     <div class="row"> 
-            <div class="col-10 col-md-7">
-                <form method="post" action="{{ $action}}">  
-                @csrf
-                @method($method) 
-                <input type="hidden" id="id" name="id" value= {{ $track->id }}> 
-                <li class="list-group-item rounded"> {{ $track->artist }} {{ " - " }} {{ $track->name }}     
+            <div class="col-10 col-md-7">   
+                <li class="list-group-item rounded"> {{ $track->artist }} {{ " - " }} {{ $track->name }} 
                 </li>
-                </form>
             </div>
             <div class="col m-auto votebutton">
-                <input class="btn btn-sm btn-outline-secondary" type="submit" value="Vote" > 
+                <form method="post" action="{{ $action}}">  
+                    @csrf
+                    @method($method) 
+                    <input type="hidden" id="id" name="id" value= {{ $track->id }}> 
+                    <input class="btn btn-sm btn-outline-secondary" type="submit" value="Vote" >     
+                </form>
             </div>
         </div>
         @endforeach

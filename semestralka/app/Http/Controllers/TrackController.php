@@ -18,13 +18,8 @@ class TrackController extends Controller
      */
     public function index()
     {
-        //$tracks = DB::select('select * from tracks', [1]);
-        //$tracks = DB::select('select * from tracks where artist = :artist', ['artist' => 'Bran']);
         if (Auth::user() != null && Auth::user()->admin == 1)  
         {
-            //$tracks = Track::with('album')->get();
-            //$tracks = Album::all();
-            //dd($tracks->toArray());
             $tracks = DB::table('tracks')->paginate(15);
             return view('track.allTracks', ['tracks' => $tracks]);
         }
@@ -90,16 +85,7 @@ class TrackController extends Controller
      */
     public function show($genre)
     {
-        // $tr = new Track();  
-        // $tr->artist = 'Aahd';
-        // $tr->save();             insert
-        // $tr = Track::find(PK);   update
-        //DB::insert('insert into users (id, name) values (?, ?)', [1, 'Dayle'])
-        //$tr = DB::update('update users set votes = 100 where name = ?', ['John']);
-        // Track::delete(PK);
-
         $tracks = Track::withCount('users')->orderBy('users_count', 'desc')->where('genre','=', $genre)->get();
-        //$tracks = DB::select('select * from tracks where genre = :genre order by votes desc', ['genre' => $genre]);
         return view('results.reslayout', ['tracks' => $tracks, 'genre' => $genre]);
     }
 

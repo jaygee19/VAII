@@ -32,7 +32,8 @@ class AlbumController extends Controller
         {
         return view('album.createForm', [
             'action' => route('album.store'),
-            'method' => 'post'
+            'method' => 'post',
+            'type' => 'Add'
         ]);
         }
         else 
@@ -51,15 +52,11 @@ class AlbumController extends Controller
     {
         if (Auth::user() != null && Auth::user()->admin == 1)  
         {
-
-        $request->validate([
-            
+        $request->validate([    
         ]);
-
         $album = Album::create($request->all());
         $album->save();
         return redirect()->route('track.notify');   
-        
         }
         else 
         {
@@ -92,9 +89,21 @@ class AlbumController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Album $album)
     {
-        //
+        if (Auth::user() != null && Auth::user()->admin == 1)  
+        {
+        return view('album.createForm', [
+            'action' => route('album.update', $album->id),
+            'method' => 'put',
+            'model' => $album,
+            'type' => 'Edit'
+        ]);
+        }
+        else 
+        {
+        abort(403, 'Unauthorized access');        
+        }
     }
 
     /**
@@ -104,9 +113,19 @@ class AlbumController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Album $album)
     {
-        //
+        if (Auth::user() != null && Auth::user()->admin == 1)  
+        {
+        $album->update($request->all());
+        $albums = DB::table('albums')->get();
+        $tracks = DB::table('tracks')->get();
+        return view('album.allAlbums', ['albums' => $albums, 'tracks' => $tracks]); 
+        }
+        else 
+        {
+        abort(403, 'Unauthorized access');        
+        } 
     }
 
     /**
@@ -115,8 +134,17 @@ class AlbumController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Album $album)
     {
-        //
+        if (Auth::user() != null && Auth::user()->admin == 1)  
+        {
+        $album->delete();
+        $albums = DB::table('albums')->get();
+        $tracks = DB::table('tracks')->get();
+        return view('album.allAlbums', ['albums' => $albums, 'tracks' => $tracks]);         }
+        else 
+        {
+        abort(403, 'Unauthorized access');        
+        }  
     }
 }

@@ -66,8 +66,8 @@ class TrackController extends Controller
         {
 
         $request->validate([
-            'artist' => 'required',
-            'name' => 'required|min:3|max:30',
+            'artist' => 'required|min:2|max:50',
+            'name' => 'required|min:2|max:50',
             'genre' => 'required'
         ]);
 
@@ -116,7 +116,7 @@ class TrackController extends Controller
         return view('track.edit', [
             'action' => route('track.update', $track->id),
             'method' => 'put',
-            'model' => $track
+            'model' => $track,
         ]);
         }
         else 

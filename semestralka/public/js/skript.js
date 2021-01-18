@@ -10,41 +10,65 @@ function unvote(id){
                 {
                     tracksHTML = "";
                     response.forEach(track => {
-                        tracksHTML += ' <div class="col-md-8"> <li class="list-group-item rounded"> '  + track.artist +  " - "  +  track.name +  "(" + track.genre +  ") &nbsp " ;
-                        tracksHTML += ' <button id="del" onClick="unvote(' + track.id + ') ">Unvote</button> </li> </div>';
+                        tracksHTML += ' <div class="col-md-10"> <ul> <li class="list-group-item rounded"> '  + track.artist +  " - "  +  track.name +  " ( " + track.genre +  " ) &nbsp " ;
+                        tracksHTML += ' <button class="btn btn-sm btn-outline-secondary" onClick="unvote(' + track.id + ') ">Unvote</button> <button class="btn btn-sm btn-outline-secondary" onClick="posi(' + track.id + ')">Position</button></li> </ul></div>';
                     });
-                    document.getElementById('userVotes').innerHTML=tracksHTML   
+                    document.getElementById('userVotes').innerHTML=tracksHTML;  
                 }
             }
         })
     }   
 }
 
-function FilterBy() {
-   
-    if (confirm("Do you really want"))
-    {
-        var genre = document.getElementById('genre').value;   
-        var artist = document.getElementById('artist').value;   
-        var nameTrack = document.getElementById('name').value;   
-        console.log(document.getElementById('genre').value);
+function posi(id){
+
         $.ajax({
-            url: "/vote/filter?genre="+ genre +"&artist="+ artist +"&name="+ nameTrack,
+            url: "home/"+id+"/getposition",
             success:function(response)
             {
                 if(response)
                 {
-                    console.log(response);
                     tracksHTML = "";
-                    response.forEach(track => {
-                        tracksHTML += ' <div class="col" > <form method="post" action="/vote"> <input type="hidden" id="id" name="id" value="' + track.id + '"> ';
-                        tracksHTML += ' <li class="list-group-item  rounded"> ' + track.artist + '  -  ' + track.name + ' (  ' + track.genre + ' ) ';
-                        tracksHTML += ' <input type="submit" value="Vote" > </li></form> </div>';
+                    response.tracks.forEach(track => {
+                        if (response.id == track.id) {                        
+                        tracksHTML += ' <div class="col-md-10"> <ul> <li class="list-group-item rounded"> '  + track.artist +  " - "  +  track.name +  " ( " + track.genre +  " ) &nbsp " ;
+                        tracksHTML += ' <button class="btn btn-sm btn-outline-secondary" onClick="unvote(' + track.id + ') ">Unvote</button> <button class="btn btn-sm btn-outline-secondary" onClick="posi(' + track.id + ')">Position</button>  => Position in result standings( <b> '+ response.position +'. </b> ) with ( <i> '+ track.users_count +' </i> ) votes</li></ul> </div>';
+                        } else {
+                        tracksHTML += ' <div class="col-md-10"> <ul> <li class="list-group-item rounded"> '  + track.artist +  " - "  +  track.name +  " ( " + track.genre +  " ) &nbsp " ;
+                        tracksHTML += ' <button class="btn btn-sm btn-outline-secondary" onClick="unvote(' + track.id + ') ">Unvote</button> <button class="btn btn-sm btn-outline-secondary" onClick="posi(' + track.id + ')">Position</button></li></ul> </div>';
+                        }
                     });
-                    document.getElementById('filtred').innerHTML=tracksHTML;  
+                    document.getElementById('userVotes').innerHTML=tracksHTML;  
                 }
             }
-        })
-        
-    } 
+        })  
 }
+
+// function FilterBy() {
+   
+//     if (confirm("Do you really want"))
+//     {
+//         var genre = document.getElementById('genre').value;   
+//         var artist = document.getElementById('artist').value;   
+//         var nameTrack = document.getElementById('name').value;   
+//         console.log(document.getElementById('genre').value);
+//         $.ajax({
+//             url: "/vote/filter?genre="+ genre +"&artist="+ artist +"&name="+ nameTrack,
+//             success:function(response)
+//             {
+//                 if(response)
+//                 {
+//                     console.log(response);
+//                     tracksHTML = "";
+//                     response.forEach(track => {
+//                         tracksHTML += ' <div class="col" > <form method="post" action="/vote"> <input type="hidden" id="id" name="id" value="' + track.id + '"> ';
+//                         tracksHTML += ' <li class="list-group-item  rounded"> ' + track.artist + '  -  ' + track.name + ' (  ' + track.genre + ' ) ';
+//                         tracksHTML += ' <input type="submit" value="Vote" > </li></form> </div>';
+//                     });
+//                     document.getElementById('filtred').innerHTML=tracksHTML;  
+//                 }
+//             }
+//         })
+        
+//     } 
+// }

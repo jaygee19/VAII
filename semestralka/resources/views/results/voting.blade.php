@@ -20,40 +20,32 @@
             <input type="text" class="form-control" id="artist" name="artist" value="" placeholder="Artist"> 
             <input type="text" class="form-control" id="name" name="name" value="" placeholder="Name of song">
             <button type="submit" class="btn btn-primary my-1">Filter by</button>
-            {{-- <button id="filter" onClick="filterBy()">Filter</button> --}}
-
         </form>
     </div>
 </div>
-
+<p></p>
+<h3>Full list: </h3>
     <p></p>
-
-    <h3>Full list: </h3>
-    <p></p>
-    <div class="row">
-        <ul class="list-group">
-            @foreach ($tracks as $track)
-            <div class="col" id="filtred">
-                {{-- @if($track->genre == $genre) --}}
+    <ul class="list-group">
+    @foreach ($tracks as $track)
+    <div class="row"> 
+            <div class="col-10 col-md-7">
                 <form method="post" action="{{ $action}}">  
                 @csrf
-                @method($method) {{-- zbytocnost --}}
-                <input type="hidden" id="id" name="id" value= {{ $track->id }}> {{-- zbytocnost --}}
-                <li class="list-group-item rounded"> {{ $track->artist }} {{ " - " }} {{ $track->name }} {{ "("  }} {{ $track->genre }} {{ ")" }} 
-                <input type="submit" value="Vote" > 
-
-                {{-- <div class="track btn btn-success" id={{ $track->id }} ></div>  --}}
+                @method($method) 
+                <input type="hidden" id="id" name="id" value= {{ $track->id }}> 
+                <li class="list-group-item rounded"> {{ $track->artist }} {{ " - " }} {{ $track->name }}     
                 </li>
                 </form>
             </div>
-            {{-- @endif --}}
-            @endforeach
-        </ul>
-    </div>
+            <div class="col m-auto votebutton">
+                <input class="btn btn-sm btn-outline-secondary" type="submit" value="Vote" > 
+            </div>
+        </div>
+        @endforeach
+    </ul>
 </div>
-
 <p></p>
 <p></p>
-{{-- <div class="container">{{ $tracks->links() }}</div> --}}
 
 @endsection

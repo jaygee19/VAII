@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use phpDocumentor\Reflection\Types\Null_;
+use App\Models\Track;
 
 class HomeController extends Controller
 {
@@ -26,5 +27,21 @@ class HomeController extends Controller
     {
         $tracks = $request->user()->tracks()->get();
         return view('home', ['tracks' => $tracks]);
+    }
+
+    public function getPosition(Request $request, $id)
+    {
+        $all = Track::withCount('users')->orderBy('users_count', 'desc')->get();
+        $counter = 0;
+        foreach ($all as $track)
+        {
+            $counter++;
+            if ($track->id == $id)
+            {
+                $position=$counter;
+            }
+        } 
+        $tracks = $request->user()->tracks()->withCount('users')->get();
+        return response()->json(['tracks' => $tracks, 'position' => $position, 'id' => $id]);       
     }
 }

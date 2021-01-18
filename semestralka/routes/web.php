@@ -6,6 +6,7 @@ use App\Http\Controllers\TrackController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VoteController;
 use App\Http\Controllers\AlbumController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,10 +21,12 @@ use App\Http\Controllers\AlbumController;
 
 Route::get('/', [PagesController::class, 'index']);
 Route::get('homepage', [PagesController::class, 'index']);
+Route::get('home/{id}/getposition', [HomeController::class, 'getPosition'])->name('home.getposition');
 Route::get('track/notify', [TrackController::class, 'notify'])->name('track.notify');
 Route::get('vote/filter', [VoteController::class, 'filter'])->name('vote.filter');
 
 Route::resource('album', AlbumController::class);
+Route::get('album/{album}/delete', [AlbumController::class, 'destroy'])->name('album.delete');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('vote', VoteController::class);

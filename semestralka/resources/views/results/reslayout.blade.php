@@ -10,19 +10,33 @@
 @section('content')
 
 <div class="container">
-    <h3> List of results:  <p class="numVotes"> Number of votes: </p> </h3>
+<h3> List of results: </h3>
+<p></p>
+<table class="table table-dark">
+    <thead>
+      <tr class="firstrow">
+        <th scope="col">#</th>
+        <th scope="col">Artist</th>
+        <th scope="col">Name of song</th>
+        <th scope="col">Number of votes</th>
+      </tr>
+    </thead>
+    <tbody>
         <?php $counter = 0; ?>
-        <ul class="list-group">
-            @foreach ($tracks as $track)
-            <?php $counter++; 
+        @foreach ($tracks as $track)
+        <?php $counter++; 
             if ($counter < 11) {
-            ?>
-            <li class="list-group-item rounded "> {{ $counter }} . {{ $track->artist }} {{ " - " }} {{ $track->name }} {{ "("  }} {{ $track->genre }} {{ ")" }} &nbsp; 
-            <span class="votes"> <b> {{ $track->users_count }} </b> </span>
-            </li>
-             <?php } ?> 
-             @endforeach
-        </ul>
+        ?>
+      <tr>
+        <th scope="row">{{ $counter }}.</th>
+        <td>{{ $track->artist }}</td>
+        <td>{{ $track->name }}</td>
+        <td><b><i>{{ $track->users_count }}</i></b></td>
+      </tr>
+      <?php } ?> 
+      @endforeach
+    </tbody>
+  </table>
 </div>
 
 @endsection

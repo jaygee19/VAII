@@ -3,7 +3,7 @@
 @section('title', 'Add album')
 
 @section('header')
-        <h1 class="display-4">Add album to database</h1>
+        <h1 class="display-4">{{$type}} album to database</h1>
         <p class="lead">Vote each month your top three songs in various genres. </p>
 @endsection
 
@@ -11,7 +11,7 @@
 @section('content')
    
 <div class="container">
-    <h4> Add album: </h4>
+    <h4> {{$type}} album: </h4>
     <p></p>
         <div class="form-group text-danger">
             @foreach ($errors->all() as $error)
@@ -41,13 +41,13 @@
         <p></p>
         <div class="form-row">
             <div class="col">
-                <input type="text" class="form-control" id="numberOfSongs" name="numberOfSongs" value="{{ old('numberOfSongs', @$model->artist) }}" placeholder="Number Of Songs" required>
+                <input type="text" class="form-control" id="numberOfSongs" name="numberOfSongs" value="{{ old('numberOfSongs', @$model->numberOfSongs) }}" placeholder="Number Of Songs" required>
             </div>
             <div class="col">
-                <input type="text" class="form-control" id="image" name="image" value="{{ old('image',@$model->name) }}" placeholder="Image" required>
+                <input type="text" class="form-control" id="image" name="image" value="{{ old('image',@$model->image) }}" placeholder="Image" required>
             </div>
             <div class="col-8">
-                <input type="text" class="form-control" id="description" name="description" value="{{ old('description',@$model->name) }}" placeholder="Description">
+                <input type="text" class="form-control" id="description" name="description" value="{{ old('description',@$model->description) }}" placeholder="Description">
             </div>
             
         </div>

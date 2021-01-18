@@ -23,7 +23,7 @@
           <p> "You have already voted for maximum number of songs" </p>
           @endif
           @if ($notify == '3')
-          <p> "You couldn't delete this vote" </p>
+          <p> "You couldn't cancel this vote" </p>
           @endif
         </div>
       </div>

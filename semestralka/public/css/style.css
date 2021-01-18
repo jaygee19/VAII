@@ -8,7 +8,7 @@ body {
 @media (max-width: 576px) {
 
     .card-img-alb {
-        width: 443px !important;
+        width: auto !important;
         height: 250px !important;
     }
 
@@ -22,7 +22,7 @@ body {
     }
 
     .card-img-alb {
-        width: 500px !important;
+        width: auto !important;
         height: 250px !important;
     }
 
@@ -250,6 +250,10 @@ td:hover {
     color: #ff7b1f;
 }
 
+h5:hover {
+    color: #ff7b1f !important;
+}
+
 .media-body {
     color: white;
 
@@ -330,4 +334,10 @@ a {
 
 .btn-outline-secondary {
     background-color: #3e3b3b !important;
+    color: #fff !important;
 }
+
+.votebutton {
+    padding: 0 !important;
+}
+

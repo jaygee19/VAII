@@ -1,5 +1,4 @@
 <div class="container">
-    <h4> Add song: </h4>
     <p></p>
         <div class="form-group text-danger">
             @foreach ($errors->all() as $error)
@@ -10,18 +9,21 @@
         @csrf
         @method($method)
         <div class="form-row">
-            <div class="col-7">
+            <div class="col-4">
                 <input type="text" class="form-control" id="artist" name="artist" value="{{ old('artist', @$model->artist) }}" placeholder="Artist" required>
             </div>
-            <div class="col">
+            <div class="col-4">
                 <input type="text" class="form-control" id="name" name="name" value="{{ old('name',@$model->name) }}" placeholder="Name" required>
             </div>
             <div class="col">
                 <select type="text" class="form-control" id="genre" name="genre" required>
                 <option selected value="{{ old('genre',@$model->genre) }}">Genre...</option>
-                <option value="Trance">Trance</option>
-                <option value="Progressive">Progressive</option>
+                <option value="BigRoom">BigRoom</option>
                 <option value="DnB">DnB</option>
+                <option value="Hardstyle">Hardstyle</option>
+                <option value="Progressive">Progressive</option>
+                <option value="PsyTrance">PsyTrance</option>
+                <option value="Trance">Trance</option>
                 </select>
             </div>
             <div class="col">

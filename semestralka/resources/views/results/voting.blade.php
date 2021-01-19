@@ -26,24 +26,24 @@
 <p></p>
 <h3>Full list: </h3>
     <p></p>
-    <ul class="list-group">
     @foreach ($tracks as $track)
     <div class="row"> 
-            <div class="col-10 col-md-7">   
-                <li class="list-group-item rounded"> {{ $track->artist }} {{ " - " }} {{ $track->name }} 
-                </li>
+            <div class="col-10 col-md-7">  
+                <ul class="list-group">
+                    <li class="list-group-item rounded"> {{ $track->artist }} {{ " - " }} {{ $track->name }} 
+                    </li>
+                </ul>                
             </div>
             <div class="col m-auto votebutton">
                 <form method="post" action="{{ $action}}">  
                     @csrf
                     @method($method) 
-                    <input type="hidden" id="id" name="id" value= {{ $track->id }}> 
+                    <input type="hidden" id={{ $track->id }} name="id" value= {{ $track->id }}> 
                     <input class="btn btn-sm btn-outline-secondary" type="submit" value="Vote" >     
                 </form>
             </div>
         </div>
         @endforeach
-    </ul>
 </div>
 <p></p>
 <p></p>

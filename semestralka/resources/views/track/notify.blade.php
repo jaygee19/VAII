@@ -42,12 +42,13 @@
     <p></p> 
     <h3> All Songs: </h3>
             <?php $counter = 0; ?>
-        <ul class="list-group">
             @foreach ($tracks as $track)
             <div class="row">
                 <div class="col-9 col-md-7">
+                    <ul class="list-group">
                     <li class="list-group-item rounded"> {{ $track->artist }} {{ " - " }} {{ $track->name }} {{ "("  }} {{ $track->genre }} {{ ")" }} &nbsp;                       
                     </li>
+                </ul>
                 </div>
                 <div class="col m-auto votebutton">
                     <a href="{{ route('track.edit', $track->id) }}" class="btn btn-sm btn-outline-secondary" role="button">
@@ -64,7 +65,6 @@
                 </div>
             </div>   
              @endforeach
-        </ul>
         <p></p>
     <p></p>
     <div >{{ $tracks->links() }}</div>
